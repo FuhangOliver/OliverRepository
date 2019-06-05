@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hubu.dao.UserMapper">
+    <select id="findUser" parameterType="com.hubu.model.UserLogin" resultType="com.hubu.model.UserLogin">
+        <if test="name != null and name !='' and password != null and password !=''">
+            SELECT * FROM user WHERE name='${name}' and password='${password}'
+        </if>
+    </select>
+</mapper>

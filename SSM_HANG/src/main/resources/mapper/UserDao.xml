@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hubu.dao.UserDao">
+
+    <select id="selectByPrimaryKey" resultType="User">
+        SELECT id as id,user_name AS userName,password AS password,age as age FROM user_t WHERE id = #{userId}
+    </select>
+
+    <insert id="insertUser">
+        INSERT INTO user_t(user_name111,password,age)
+        VALUES(#{userName},#{password},#{age})
+    </insert>
+
+    <insert id="insertAddress">
+        INSERT INTO address(name)
+        VALUES(#{name})
+    </insert>
+
+</mapper>

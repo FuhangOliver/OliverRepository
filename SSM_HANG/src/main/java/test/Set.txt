@@ -1,0 +1,7 @@
+set：ste元素不可重复，是无序的。
+    set接口中的方法和Collection一致。
+    |--HashSet：内部结构是哈希表，是不同步的。
+                存储对象的时候计算Hash值，给定Index，（“ab”、“ba”）如果两个元素的Hashcode相同，再去判断俩个元素的内容是否相同（equals）。
+                查找的时候再计算一次就知道Index了，不用遍历。
+
+    |--TreeSet:

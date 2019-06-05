@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hubu.dao.DeviceiInfoMapper">
+    <resultMap id="BaseResultMap" type="com.hubu.model.DeviceiInfo">
+        <id column="deviceId" jdbcType="INTEGER" property="deviceid"/>
+        <result column="deviceName" jdbcType="VARCHAR" property="devicename"/>
+        <result column="deviceType" jdbcType="VARCHAR" property="devicetype"/>
+        <result column="deviceIp" jdbcType="VARCHAR" property="deviceip"/>
+        <result column="deviceState" jdbcType="VARCHAR" property="devicestate"/>
+        <result column="resourceType" jdbcType="VARCHAR" property="resourcetype"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        deviceId, deviceName, deviceType, deviceIp, deviceState, resourceType
+    </sql>
+    <select id="selectByExample" parameterType="com.hubu.model.DeviceiInfoExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from deviceinfo
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from deviceinfo
+        where deviceId = #{deviceid,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from deviceinfo
+        where deviceId = #{deviceid,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.hubu.model.DeviceiInfoExample">
+        delete from deviceinfo
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.hubu.model.DeviceiInfo">
+        insert into deviceinfo (deviceId, deviceName, deviceType,
+        deviceIp, deviceState, resourceType
+        )
+        values (#{deviceid,jdbcType=INTEGER}, #{devicename,jdbcType=VARCHAR}, #{devicetype,jdbcType=VARCHAR},
+        #{deviceip,jdbcType=VARCHAR}, #{devicestate,jdbcType=VARCHAR}, #{resourcetype,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.hubu.model.DeviceiInfo">
+        insert into deviceinfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="deviceid != null">
+                deviceId,
+            </if>
+            <if test="devicename != null">
+                deviceName,
+            </if>
+            <if test="devicetype != null">
+                deviceType,
+            </if>
+            <if test="deviceip != null">
+                deviceIp,
+            </if>
+            <if test="devicestate != null">
+                deviceState,
+            </if>
+            <if test="resourcetype != null">
+                resourceType,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="deviceid != null">
+                #{deviceid,jdbcType=INTEGER},
+            </if>
+            <if test="devicename != null">
+                #{devicename,jdbcType=VARCHAR},
+            </if>
+            <if test="devicetype != null">
+                #{devicetype,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceip != null">
+                #{deviceip,jdbcType=VARCHAR},
+            </if>
+            <if test="devicestate != null">
+                #{devicestate,jdbcType=VARCHAR},
+            </if>
+            <if test="resourcetype != null">
+                #{resourcetype,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.hubu.model.DeviceiInfoExample" resultType="java.lang.Long">
+        select count(*) from deviceinfo
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update deviceinfo
+        <set>
+            <if test="record.deviceid != null">
+                deviceId = #{record.deviceid,jdbcType=INTEGER},
+            </if>
+            <if test="record.devicename != null">
+                deviceName = #{record.devicename,jdbcType=VARCHAR},
+            </if>
+            <if test="record.devicetype != null">
+                deviceType = #{record.devicetype,jdbcType=VARCHAR},
+            </if>
+            <if test="record.deviceip != null">
+                deviceIp = #{record.deviceip,jdbcType=VARCHAR},
+            </if>
+            <if test="record.devicestate != null">
+                deviceState = #{record.devicestate,jdbcType=VARCHAR},
+            </if>
+            <if test="record.resourcetype != null">
+                resourceType = #{record.resourcetype,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update deviceinfo
+        set deviceId = #{record.deviceid,jdbcType=INTEGER},
+        deviceName = #{record.devicename,jdbcType=VARCHAR},
+        deviceType = #{record.devicetype,jdbcType=VARCHAR},
+        deviceIp = #{record.deviceip,jdbcType=VARCHAR},
+        deviceState = #{record.devicestate,jdbcType=VARCHAR},
+        resourceType = #{record.resourcetype,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hubu.model.DeviceiInfo">
+        update deviceinfo
+        <set>
+            <if test="devicename != null">
+                deviceName = #{devicename,jdbcType=VARCHAR},
+            </if>
+            <if test="devicetype != null">
+                deviceType = #{devicetype,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceip != null">
+                deviceIp = #{deviceip,jdbcType=VARCHAR},
+            </if>
+            <if test="devicestate != null">
+                deviceState = #{devicestate,jdbcType=VARCHAR},
+            </if>
+            <if test="resourcetype != null">
+                resourceType = #{resourcetype,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where deviceId = #{deviceid,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hubu.model.DeviceiInfo">
+        update deviceinfo
+        set deviceName = #{devicename,jdbcType=VARCHAR},
+        deviceType = #{devicetype,jdbcType=VARCHAR},
+        deviceIp = #{deviceip,jdbcType=VARCHAR},
+        deviceState = #{devicestate,jdbcType=VARCHAR},
+        resourceType = #{resourcetype,jdbcType=VARCHAR}
+        where deviceId = #{deviceid,jdbcType=INTEGER}
+    </update>
+</mapper>

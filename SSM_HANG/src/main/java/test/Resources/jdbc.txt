@@ -1,0 +1,11 @@
+#
+#Wed Mar 27 19:09:50 CST 2019
+maxIdle=21
+maxActive=20  
+jdbc.password=admin
+maxWait=60000  
+minIdle=1  
+jdbc.url=jdbc\:mysql\://127.0.01\:3306/ssm?useUnicode\=true&characterEncoding\=utf8
+jdbc.driver=com.mysql.jdbc.Driver
+jdbc.username=root
+initialSize=0  
