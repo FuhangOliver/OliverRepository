@@ -1,0 +1,18 @@
+server:
+  port: 8080
+#name: Oliver
+#age: 23
+#content: "name:${name},age:${age}"
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  datasource:
+    url: jdbc:mysql://127.0.01:3306/ssm?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: admin
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update #新增数据库链接必备参数
